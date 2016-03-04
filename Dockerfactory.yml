@@ -1,0 +1,13 @@
+# Automatically tag built images
+tag: six8/dockerfactory:0.1
+# Can override the Dockerfile
+dockerfile: ./Dockerfile
+# Most `docker build` parameters work (use '_' instead of '-')
+force_rm: True
+no_cache: True
+memory: 100m
+context:
+  # Relative directories are relative to Dockerfactory.yml
+  # Must specify current directory if you want it. Dockerfactory
+  # does not assume you want the current directory.
+  .: /
