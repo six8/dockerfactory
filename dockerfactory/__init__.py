@@ -1,0 +1,5 @@
+__title__ = 'dockerfactory'
+__version__ = '0.1'
+__author__ = 'Michael Thornton'
+__license__ = 'MIT'
+__copyright__ = 'Copyright 2016 Michael Thornton'
