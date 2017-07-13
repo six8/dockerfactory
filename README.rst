@@ -45,13 +45,13 @@ run as a docker image.
     docker run -it --rm \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -v ${PWD}:/project \
-        six8/dockerfactory:0.1 \
+        six8/dockerfactory:0.3 \
         /project/Dockerfactory.yml
 
 .. code-block:: shell
 
     Dockerfactory building:
-      With command: docker build --force-rm --memory 100m --no-cache --tag six8/dockerfactory:0.1 -
+      With command: docker build --force-rm --memory 100m --no-cache --tag six8/dockerfactory:0.3 -
       With Dockerfile: /project/Dockerfile
       With context:
         - /project: /

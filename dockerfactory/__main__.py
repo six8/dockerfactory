@@ -6,6 +6,7 @@ from click.utils import make_str
 import yaml
 import tarfile
 from .config import DockerFactoryConf
+from string import Template
 
 
 def _dir_to_file(ctx, param, value):
@@ -42,12 +43,16 @@ def cli(ctx, file):
         base_dir = os.path.dirname(file.name)
 
     with file as f:
-        content = yaml.load(f)
+        raw_content = f.read()
+
+    # Interpolate environment placeholders like ${NAME}
+    raw_content = Template(raw_content).safe_substitute(os.environ)
+    content = yaml.load(raw_content)
 
     try:
         conf = DockerFactoryConf(content)
     except Exception as e:
-        ctx.fail(u'Invalid Dockerfactory.yml: %s' % e)
+        return ctx.fail(u'Invalid Dockerfactory.yml: %s' % e)
     else:
         conf.validate(strict=True)
 
@@ -82,6 +87,9 @@ def cli(ctx, file):
             if isinstance(v, bool):
                 if v is True:
                     args.append(param_name)
+            elif isinstance(v, list):
+                for item in v:
+                    args.extend((param_name, make_str(item)))
             else:
                 args.extend((param_name, make_str(v)))
 

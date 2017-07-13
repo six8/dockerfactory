@@ -1,5 +1,5 @@
 # Automatically tag built images
-tag: six8/dockerfactory:0.1
+tag: six8/dockerfactory:0.3
 # Can override the Dockerfile
 dockerfile: ./Dockerfile
 # Most `docker build` parameters work (use '_' instead of '-')
